@@ -9,5 +9,6 @@ Infrastructure:
 <li>Public Subnet</li>
 <li>Route Table</li>
 <li>Internet Gateway</li>
+</ul>
 
-![Imgur](https://imgur.com/ZorO1Kq)
+![Imgur](https://imgur.com/ZorO1Kq.png)
