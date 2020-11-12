@@ -1,0 +1,3 @@
+variable "pub-key" {
+
+}
