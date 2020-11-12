@@ -31,8 +31,8 @@ resource "aws_subnet" "priv-sub" {
 }
 
 resource "aws_security_group" "instance1-sg" {
-  name        = "allow-ssh-terraform"
-  description = "Allow SSH inbound, for instance1 ec2"
+  name        = "network rules"
+  description = "Allow SSH and port 80 for instance1"
   vpc_id      = aws_vpc.terraform-vpc.id
 
   ingress {
@@ -40,7 +40,15 @@ resource "aws_security_group" "instance1-sg" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["172.31.42.94", aws_vpc.terraform-vpc.cidr_block]
+    cidr_blocks = ["0.0.0.0/0", aws_vpc.terraform-vpc.cidr_block]
+  }
+
+  ingress {
+    description = "Opening port 80 for ec2"
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0", aws_vpc.terraform-vpc.cidr_block]
   }
 
   egress {
@@ -88,9 +96,31 @@ resource "aws_instance" "instance1" {
   vpc_security_group_ids = [aws_security_group.instance1-sg.id]
   subnet_id              = aws_subnet.pub-sub.id
 
-
   tags = {
     Name = "Terraform-built-ec2"
+  }
+
+  provisioner "file" {
+    source = "script.sh"
+    destination = "/tmp/script.sh"
+
+    connection {
+      host     = aws_instance.instance1.public_ip
+      user     = "ubuntu"
+      private_key = "${file("/home/ubuntu/.ssh/id_rsa")}"
+    }
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+    "chmod +x /tmp/script.sh",
+    "sudo /tmp/script.sh"
+    ]
+    connection {
+      host     = aws_instance.instance1.public_ip
+      user     = "ubuntu"
+      private_key = "${file("/home/ubuntu/.ssh//id_rsa")}"
+    }
   }
 }
 
