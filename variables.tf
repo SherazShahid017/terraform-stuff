@@ -1,3 +1,3 @@
-variable "pub-key" {
-
+variable "public-key" {
+    
 }
