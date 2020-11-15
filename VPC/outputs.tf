@@ -5,3 +5,11 @@ output "ec2subnet" {
 output "securityID" {
     value = aws_security_group.instance1-sg.id
 }
+
+output "privsub-id" {
+    value = aws_subnet.priv-sub.id
+}
+
+output "privsub-id2" {
+    value = aws_subnet.priv-sub2.id
+}

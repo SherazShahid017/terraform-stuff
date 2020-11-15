@@ -16,11 +16,22 @@ resource "aws_subnet" "pub-sub" {
 }
 
 resource "aws_subnet" "priv-sub" {
+  availability_zone       = "eu-west-1a"
   vpc_id                  = aws_vpc.terraform-vpc.id
   cidr_block              = "10.0.2.0/24"
   map_public_ip_on_launch = false
   tags = {
     Name = "Terraform-Priv-Sub"
+  }
+}
+
+resource "aws_subnet" "priv-sub2" {
+  availability_zone       = "eu-west-1b"
+  vpc_id                  = aws_vpc.terraform-vpc.id
+  cidr_block              = "10.0.3.0/24"
+  map_public_ip_on_launch = false
+  tags = {
+    Name = "Terraform-Priv-Sub2"
   }
 }
 

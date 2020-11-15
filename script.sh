@@ -1,19 +1,15 @@
 #!/bin/bash
 
 # install ansible
-git clone install scripts
-cd installscripts/
+git clone https://github.com/LukeBenson/install-scripts.git
+cd install-scripts/
 ./ansible-install
-rm -rf installscripts/
+rm -rf install-scripts/
 
-#install my ansible files and run them
-git clone ansible-files
+#install my ansible files
+git clone https://github.com/SherazShahid017/ansible-files.git
 cd ansible-files/
+
+#set the local-ip variable to the ec2-ip output
+local-ip=${terraform output ec2-ip}
 ansible-playbook -i inventory.conf playbook.yaml
-
-# install nginx
-#apt-get update
-#apt-get -y install nginx
-
-# make sure nginx is started
-#service nginx start

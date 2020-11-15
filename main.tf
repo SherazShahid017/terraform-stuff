@@ -15,3 +15,9 @@ module "EC2" {
   secID = module.VPC.securityID
   pub-key = var.public-key
 }
+
+module "RDS" {
+  source = "./RDS"
+  priv-sub-id = module.VPC.privsub-id
+  priv-sub-id2 = module.VPC.privsub-id2
+}
