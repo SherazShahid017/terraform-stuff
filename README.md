@@ -9,6 +9,9 @@ Infrastructure:
 <li>Public Subnet</li>
 <li>Route Table</li>
 <li>Internet Gateway</li>
+<li>Security Group(s)</li>
+<li>Private Subnet</li>
+<li>RDS Instance in private subnet</li>
 </ul>
 
 ![Imgur](https://imgur.com/ZorO1Kq.png)
