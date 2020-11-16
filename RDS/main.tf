@@ -7,13 +7,13 @@ resource "aws_db_subnet_group" "subgroup" {
   }
 }
 
-resource "aws_db_security_group" "mydb-sg" {
-  name = "rds_sg"
+#resource "aws_db_security_group" "mydb-sg" {
+#  name = "rds_sg"
 
-  ingress {
-    security_group_id = var.priv-sub-id
-  }
-}
+#  ingress {
+#    security_group_id = var.priv-sub-id
+#  }
+#}
 
 resource "aws_db_instance" "mydatabase" {
   allocated_storage    = 20
@@ -27,5 +27,5 @@ resource "aws_db_instance" "mydatabase" {
   parameter_group_name = "default.mysql5.7"
   db_subnet_group_name = aws_db_subnet_group.subgroup.name
   skip_final_snapshot = true
-  db_security_group_names = [aws_db_security_group.mydb-sg.rds_sg]
+#  security_group_names = [aws_db_security_group.mydb-sg.name]
 }
