@@ -2,9 +2,8 @@
 
 #Installing pip and python
 sudo apt-get update
-sudo apt install python3
-sudo apt install python3-pip
-sudo apt install pip
+sudo apt install python3 -y
+sudo apt install python3-pip -Y
 
 # install ansible
 #git clone https://github.com/LukeBenson/install-scripts.git
@@ -16,7 +15,8 @@ sudo apt install pip
 mkdir -p ~/.local/bin
 echo 'PATH=$PATH:~/.local/bin' >> ~/.bashrc
 source ~/.bashrc
-pip install --user ansible -y
+pip3 install --user ansible -Y
+sudo apt install ansible -Y
 
 #install my ansible files
 git clone https://github.com/SherazShahid017/ansible-files.git
